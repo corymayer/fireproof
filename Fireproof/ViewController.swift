@@ -18,6 +18,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet var sceneView: ARSCNView!
     let bubbleDepth : Float = 0.01 // the 'depth' of 3D text
     var latestPrediction : String = "…" // a variable containing the latest CoreML prediction
+    var latestPotentialMatches: [VNClassificationObservation]?
     
     // COREML
     var visionRequests = [VNRequest]()
@@ -66,13 +67,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
-        // Enable plane detection
-        configuration.planeDetection = .horizontal
-        
-        // Run the view's session
-        sceneView.session.run(configuration)
+        resumeSceneView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -105,6 +100,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @objc func handleTap(gestureRecognize: UITapGestureRecognizer) {
         // HIT TEST : REAL WORLD
         // Get Screen Centre
+//        sceneView.session.pause()
         let screenCentre : CGPoint = CGPoint(x: self.sceneView.bounds.midX, y: self.sceneView.bounds.midY)
         
         let arHitTestResults : [ARHitTestResult] = sceneView.hitTest(screenCentre, types: [.featurePoint]) // Alternatively, we could use '.existingPlaneUsingExtent' for more grounded hit-test-points.
@@ -118,6 +114,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let node : SCNNode = createNewBubbleParentNode(latestPrediction)
             sceneView.scene.rootNode.addChildNode(node)
             node.position = worldCoord
+            
+            sceneView.session.pause()
+            performSegue(withIdentifier: "labelItemSegue", sender: self)
         }
     }
     
@@ -193,7 +192,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             .flatMap({ $0 as? VNClassificationObservation })
             .map({ "\($0.identifier) \(String(format:"- %.2f", $0.confidence))" })
             .joined(separator: "\n")
-        
+        let matches: [Any] = Array(observations[0...2])
+        self.latestPotentialMatches = matches as? [VNClassificationObservation]
+        print("test")
         
         DispatchQueue.main.async {
             // Print Classifications
@@ -236,6 +237,31 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             print(error)
         }
         
+    }
+    
+    private func resumeSceneView() {
+        // Create a session configuration
+        let configuration = ARWorldTrackingConfiguration()
+        // Enable plane detection
+        configuration.planeDetection = .horizontal
+        sceneView.session.run(configuration)
+    }
+    
+    @IBAction func unwindToVC(segue:UIStoryboardSegue) {
+        resumeSceneView()
+    }
+    
+    @IBAction func saveItem(segue:UIStoryboardSegue) {
+        resumeSceneView()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (false && segue.identifier == "labelItemSegue") {
+            let dest = segue.destination as! UINavigationController
+            let labelVC = dest.viewControllers[0] as! ItemTagViewController
+            
+            labelVC.potentialMatches = self.latestPotentialMatches
+        }
     }
 }
 
