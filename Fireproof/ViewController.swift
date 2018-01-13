@@ -13,12 +13,14 @@ import ARKit
 import Vision
 
 class ViewController: UIViewController, ARSCNViewDelegate {
-
+    @IBOutlet weak var tooltipLabel: UILabel!
+    
     // SCENE
     @IBOutlet var sceneView: ARSCNView!
     let bubbleDepth : Float = 0.01 // the 'depth' of 3D text
     var latestPrediction : String = "…" // a variable containing the latest CoreML prediction
     var latestPotentialMatches: [VNClassificationObservation]?
+    var ARSCNViewRenderer: SCNSceneRenderer?
     
     // COREML
     var visionRequests = [VNRequest]()
@@ -32,7 +34,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         
         // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+//        sceneView.showsStatistics = true
         
         // Create a new scene
         let scene = SCNScene()
@@ -68,6 +70,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.viewWillAppear(animated)
         
         resumeSceneView()
+        
+        // set outline on tooltip text
+        let strokeTextAttributes: [NSAttributedStringKey : Any] = [
+            NSAttributedStringKey.strokeColor : UIColor.black,
+            NSAttributedStringKey.foregroundColor : UIColor.white,
+            NSAttributedStringKey.strokeWidth : -2.0,
+            ]
+        tooltipLabel.attributedText = NSAttributedString(string: "Tap to add object", attributes: strokeTextAttributes)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -87,6 +97,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         DispatchQueue.main.async {
             // Do any desired updates to SceneKit here.
+            self.ARSCNViewRenderer = renderer
         }
     }
     
@@ -101,22 +112,35 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // HIT TEST : REAL WORLD
         // Get Screen Centre
 //        sceneView.session.pause()
-        let screenCentre : CGPoint = CGPoint(x: self.sceneView.bounds.midX, y: self.sceneView.bounds.midY)
+        let tapPoint = gestureRecognize.location(in: self.sceneView)
         
-        let arHitTestResults : [ARHitTestResult] = sceneView.hitTest(screenCentre, types: [.featurePoint]) // Alternatively, we could use '.existingPlaneUsingExtent' for more grounded hit-test-points.
+        let arHitTestResults : [ARHitTestResult] = sceneView.hitTest(tapPoint, types: [.featurePoint]) // Alternatively, we could use '.existingPlaneUsingExtent' for more grounded hit-test-points.
         
         if let closestResult = arHitTestResults.first {
+            var tappedNode: SCNNode?
+            
+            if let renderer = ARSCNViewRenderer {
+                let sceneKitHits = renderer.hitTest(tapPoint, options: nil)
+                tappedNode = sceneKitHits.first?.node
+            }
+            
+            if (tappedNode != nil) {
+                print("HIT!!!!!!!!!!!!!!!!")
+                return
+            }
             // Get Coordinates of HitTest
             let transform : matrix_float4x4 = closestResult.worldTransform
             let worldCoord : SCNVector3 = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
             
             // Create 3D Text
             let node : SCNNode = createNewBubbleParentNode(latestPrediction)
+            
             sceneView.scene.rootNode.addChildNode(node)
             node.position = worldCoord
             
             sceneView.session.pause()
-            performSegue(withIdentifier: "labelItemSegue", sender: self)
+            tooltipLabel.isHidden = true
+            performSegue(withIdentifier: "nameItemSegue", sender: self)
         }
     }
     
@@ -149,7 +173,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // CENTRE POINT NODE
         let sphere = SCNSphere(radius: 0.005)
-        sphere.firstMaterial?.diffuse.contents = UIColor.cyan
+        sphere.firstMaterial?.diffuse.contents = UIColor.blue
         let sphereNode = SCNNode(geometry: sphere)
         
         // BUBBLE PARENT NODE
@@ -240,6 +264,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     private func resumeSceneView() {
+        tooltipLabel.isHidden = false
+        
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
         // Enable plane detection
@@ -256,9 +282,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (false && segue.identifier == "labelItemSegue") {
-            let dest = segue.destination as! UINavigationController
-            let labelVC = dest.viewControllers[0] as! ItemTagViewController
+        if (segue.identifier == "nameItemSegue") {
+            let labelVC = segue.destination as! ItemTagViewController
             
             labelVC.potentialMatches = self.latestPotentialMatches
         }

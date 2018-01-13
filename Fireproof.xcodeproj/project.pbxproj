@@ -21,7 +21,6 @@
 		BAD28DF2200A89890014AEDB /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD28DF1200A89890014AEDB /* CustomCells.swift */; };
 		BAD28DF4200A8A490014AEDB /* Helpers in Resources */ = {isa = PBXBuildFile; fileRef = BAD28DF3200A8A490014AEDB /* Helpers */; };
 		BAD28DF7200A8ACD0014AEDB /* FloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD28DF6200A8ACD0014AEDB /* FloatLabelTextField.swift */; };
-		BAD28DF9200A8D0E0014AEDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAD28DF8200A8D0E0014AEDB /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +43,6 @@
 		BAD28DF1200A89890014AEDB /* CustomCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCells.swift; sourceTree = "<group>"; };
 		BAD28DF3200A8A490014AEDB /* Helpers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Helpers; sourceTree = "<group>"; };
 		BAD28DF6200A8ACD0014AEDB /* FloatLabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatLabelTextField.swift; sourceTree = "<group>"; };
-		BAD28DF8200A8D0E0014AEDB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +78,6 @@
 		AEEC85581F18B8C600D43B9B = {
 			isa = PBXGroup;
 			children = (
-				BAD28DF8200A8D0E0014AEDB /* Assets.xcassets */,
 				BAD28DF6200A8ACD0014AEDB /* FloatLabelTextField.swift */,
 				AEEC85631F18B8C600D43B9B /* Fireproof */,
 				AEEC85621F18B8C600D43B9B /* Products */,
@@ -184,7 +181,6 @@
 				AEEC85711F18B8C600D43B9B /* LaunchScreen.storyboard in Resources */,
 				AEEC856E1F18B8C600D43B9B /* Assets.xcassets in Resources */,
 				BAD28DF0200A883A0014AEDB /* CustomRows in Resources */,
-				BAD28DF9200A8D0E0014AEDB /* Assets.xcassets in Resources */,
 				AEEC856C1F18B8C600D43B9B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
