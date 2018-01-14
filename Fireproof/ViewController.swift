@@ -138,7 +138,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             sceneView.scene.rootNode.addChildNode(node)
             node.position = worldCoord
             
-            sceneView.session.pause()
+//            sceneView.session.pause()
             tooltipLabel.isHidden = true
             performSegue(withIdentifier: "nameItemSegue", sender: self)
         }
