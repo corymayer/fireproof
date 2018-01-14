@@ -9,13 +9,15 @@
 import UIKit
 import Vision
 
-class ItemTagViewController: UIViewController {
+class ItemTagViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     var potentialMatches:[VNClassificationObservation]?
     var saveItem: Bool = false
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var itemNameField: UITextField!
-    @IBAction func overlayTap(_ sender: UITapGestureRecognizer) {
+    @objc func overlayTap(_ sender: UITapGestureRecognizer) {
         itemNameField.endEditing(false)
+        self.tableView.isHidden = true
     }
     @IBAction func ARButtonTap(_ sender: UIButton) {
         if (saveItem) {
@@ -28,9 +30,26 @@ class ItemTagViewController: UIViewController {
         saveItem = !saveItem
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let tapOnScreen: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(overlayTap))
+        tapOnScreen.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapOnScreen)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         if let potMatches = potentialMatches {
             itemNameField.text = potMatches[0].identifier
+        }
+        
+        if let searchTextField = itemNameField, let clearButton = searchTextField.value(forKey: "_clearButton") as? UIButton {
+            // Create a template copy of the original button image
+            let templateImage =  clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate)
+            // Set the template image copy as the button image
+            clearButton.setImage(templateImage, for: .normal)
+            // Finally, set the image color
+            clearButton.tintColor = .white
         }
     }
 
@@ -49,4 +68,38 @@ class ItemTagViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return 3
+    }
+    
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+         let cell = tableView.dequeueReusableCell(withIdentifier: "suggestionCell", for: indexPath)
+        
+         // Configure the cell...
+        cell.textLabel?.text = self.potentialMatches?[indexPath.row].identifier ?? ""
+        
+         return cell
+     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        itemNameField.text = potentialMatches?[indexPath.row].identifier ?? ""
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.tableView.isHidden = false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.tableView.isHidden = true
+    }
+    
+    
 }

@@ -1,12 +1,12 @@
 PODS:
-  - Eureka (4.0.1)
+  - SearchTextField (1.2.0)
 
 DEPENDENCIES:
-  - Eureka
+  - SearchTextField
 
 SPEC CHECKSUMS:
-  Eureka: c8bd5cc07143b6f66268c208d28a246c99b41955
+  SearchTextField: a5bb7e4c33affadb115afdbe8100d84ef10a8024
 
-PODFILE CHECKSUM: 808f8f6caf85dbba28297d9dbd208f6465cc54c8
+PODFILE CHECKSUM: 1a7cc399f35e2f05971c41720ceba336c8d55382
 
 COCOAPODS: 1.3.1

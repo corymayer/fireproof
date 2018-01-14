@@ -157,8 +157,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         font = font?.withTraits(traits: .traitBold)
         bubble.font = font
         bubble.alignmentMode = kCAAlignmentCenter
-        bubble.firstMaterial?.diffuse.contents = UIColor.orange
-        bubble.firstMaterial?.specular.contents = UIColor.white
+        bubble.firstMaterial?.diffuse.contents = UIColor.blue
+        bubble.firstMaterial?.specular.contents = UIColor.black
         bubble.firstMaterial?.isDoubleSided = true
         // bubble.flatness // setting this too low can cause crashes.
         bubble.chamferRadius = CGFloat(bubbleDepth)

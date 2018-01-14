@@ -6,5 +6,5 @@ target 'Fireproof' do
   use_frameworks!
 
   # Pods for Fireproof
-  pod 'Eureka'
+  pod 'SearchTextField'
 end

@@ -15,11 +15,9 @@
 		AEEC856C1F18B8C600D43B9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEEC856A1F18B8C600D43B9B /* Main.storyboard */; };
 		AEEC856E1F18B8C600D43B9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEEC856D1F18B8C600D43B9B /* Assets.xcassets */; };
 		AEEC85711F18B8C600D43B9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEEC856F1F18B8C600D43B9B /* LaunchScreen.storyboard */; };
+		BA9AEC74200AE0B1001EED1E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9AEC73200AE0B1001EED1E /* TableViewController.swift */; };
 		BAD28DE8200A73020014AEDB /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = BAD28DE7200A73020014AEDB /* Podfile */; };
 		BAD28DEA200A73750014AEDB /* ItemTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD28DE9200A73750014AEDB /* ItemTagViewController.swift */; };
-		BAD28DF0200A883A0014AEDB /* CustomRows in Resources */ = {isa = PBXBuildFile; fileRef = BAD28DEF200A88390014AEDB /* CustomRows */; };
-		BAD28DF2200A89890014AEDB /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD28DF1200A89890014AEDB /* CustomCells.swift */; };
-		BAD28DF4200A8A490014AEDB /* Helpers in Resources */ = {isa = PBXBuildFile; fileRef = BAD28DF3200A8A490014AEDB /* Helpers */; };
 		BAD28DF7200A8ACD0014AEDB /* FloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD28DF6200A8ACD0014AEDB /* FloatLabelTextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,12 +34,10 @@
 		AEEC85701F18B8C600D43B9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AEEC85721F18B8C600D43B9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B592B6E8B3666ACAECADBFE8 /* Pods-Fireproof.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fireproof.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fireproof/Pods-Fireproof.debug.xcconfig"; sourceTree = "<group>"; };
-		BAD28DE7200A73020014AEDB /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		BA9AEC73200AE0B1001EED1E /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		BAD28DE7200A73020014AEDB /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BAD28DE9200A73750014AEDB /* ItemTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTagViewController.swift; sourceTree = "<group>"; };
 		BAD28DEC200A73F30014AEDB /* Eureka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Eureka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BAD28DEF200A88390014AEDB /* CustomRows */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CustomRows; sourceTree = "<group>"; };
-		BAD28DF1200A89890014AEDB /* CustomCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCells.swift; sourceTree = "<group>"; };
-		BAD28DF3200A8A490014AEDB /* Helpers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Helpers; sourceTree = "<group>"; };
 		BAD28DF6200A8ACD0014AEDB /* FloatLabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatLabelTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,14 +93,12 @@
 		AEEC85631F18B8C600D43B9B /* Fireproof */ = {
 			isa = PBXGroup;
 			children = (
-				BAD28DF3200A8A490014AEDB /* Helpers */,
-				BAD28DF1200A89890014AEDB /* CustomCells.swift */,
-				BAD28DEF200A88390014AEDB /* CustomRows */,
 				BAD28DE7200A73020014AEDB /* Podfile */,
 				AEEC85641F18B8C600D43B9B /* AppDelegate.swift */,
 				AEEC85661F18B8C600D43B9B /* art.scnassets */,
 				AEEC85681F18B8C600D43B9B /* ViewController.swift */,
 				BAD28DE9200A73750014AEDB /* ItemTagViewController.swift */,
+				BA9AEC73200AE0B1001EED1E /* TableViewController.swift */,
 				AEEC856A1F18B8C600D43B9B /* Main.storyboard */,
 				AEEC856D1F18B8C600D43B9B /* Assets.xcassets */,
 				AEEC856F1F18B8C600D43B9B /* LaunchScreen.storyboard */,
@@ -175,12 +169,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAD28DF4200A8A490014AEDB /* Helpers in Resources */,
 				BAD28DE8200A73020014AEDB /* Podfile in Resources */,
 				AEEC85671F18B8C600D43B9B /* art.scnassets in Resources */,
 				AEEC85711F18B8C600D43B9B /* LaunchScreen.storyboard in Resources */,
 				AEEC856E1F18B8C600D43B9B /* Assets.xcassets in Resources */,
-				BAD28DF0200A883A0014AEDB /* CustomRows in Resources */,
 				AEEC856C1F18B8C600D43B9B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,11 +220,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Fireproof/Pods-Fireproof-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -247,9 +239,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAD28DEA200A73750014AEDB /* ItemTagViewController.swift in Sources */,
+				BA9AEC74200AE0B1001EED1E /* TableViewController.swift in Sources */,
 				BAD28DF7200A8ACD0014AEDB /* FloatLabelTextField.swift in Sources */,
 				AEEC85691F18B8C600D43B9B /* ViewController.swift in Sources */,
-				BAD28DF2200A89890014AEDB /* CustomCells.swift in Sources */,
 				AEC748F51F18C24700334D87 /* Inceptionv3.mlmodel in Sources */,
 				AEEC85651F18B8C600D43B9B /* AppDelegate.swift in Sources */,
 			);
