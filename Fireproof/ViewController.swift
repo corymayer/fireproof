@@ -145,8 +145,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             node.position = worldCoord
             lastPosition = worldCoord
             lastNode = node
+        
+            // get a snapshot
+            let snapshot = sceneView.snapshot()
             
-            lastItem = Item(title: latestPrediction, img: nil, cost: 0.0, additionalDetails: nil, quantity: nil, referenceLink: nil, included: false)
+            // create a new Item
+            lastItem = Item(title: latestPrediction, img: snapshot, cost: 0.0, additionalDetails: nil, quantity: nil, referenceLink: nil, included: false)
             
 //            sceneView.session.pause()
             tooltipLabel.isHidden = true
