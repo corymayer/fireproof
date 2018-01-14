@@ -139,7 +139,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let worldCoord : SCNVector3 = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
             
             // Create 3D Text
-            let node : SCNNode = createNewBubbleParentNode("[New Item]")
+            let node : SCNNode = createNewBubbleParentNode(latestPrediction, new: true)
             
             sceneView.scene.rootNode.addChildNode(node)
             node.position = worldCoord
@@ -154,7 +154,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    func createNewBubbleParentNode(_ text : String) -> SCNNode {
+    func createNewBubbleParentNode(_ text : String, new: Bool) -> SCNNode {
         // Warning: Creating 3D Text is susceptible to crashing. To reduce chances of crashing; reduce number of polygons, letters, smoothness, etc.
         
         // TEXT BILLBOARD CONSTRAINT
@@ -167,7 +167,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         font = font?.withTraits(traits: .traitBold)
         bubble.font = font
         bubble.alignmentMode = kCAAlignmentCenter
-        bubble.firstMaterial?.diffuse.contents = UIColor.blue
+        if new {
+            bubble.firstMaterial?.diffuse.contents = UIColor.green
+        }
+        else {
+            bubble.firstMaterial?.diffuse.contents = UIColor.blue
+        }
         bubble.firstMaterial?.specular.contents = UIColor.black
         bubble.firstMaterial?.isDoubleSided = true
         // bubble.flatness // setting this too low can cause crashes.
@@ -183,7 +188,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // CENTRE POINT NODE
         let sphere = SCNSphere(radius: 0.005)
-        sphere.firstMaterial?.diffuse.contents = UIColor.blue
+        if new {
+            sphere.firstMaterial?.diffuse.contents = UIColor.green
+        }
+        else {
+            sphere.firstMaterial?.diffuse.contents = UIColor.blue
+        }
+        
         let sphereNode = SCNNode(geometry: sphere)
         
         // BUBBLE PARENT NODE
@@ -287,15 +298,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         resumeSceneView()
         lastNode?.removeFromParentNode()
         
-        // Create 3D Text
-        let node : SCNNode = createNewBubbleParentNode(lastItem?.title ?? "N/A")
-        
-        sceneView.scene.rootNode.addChildNode(node)
-        node.position = lastPosition!
-        lastNode = node
-        
-        allNodes.append(lastNode!)
-        self.itemCountLabel.setTitle("" + String(allNodes.count), for: .normal)
+        if (lastItem!.included) {
+            // Create 3D Text
+            let node : SCNNode = createNewBubbleParentNode(lastItem?.title ?? "N/A", new: false)
+            
+            sceneView.scene.rootNode.addChildNode(node)
+            node.position = lastPosition!
+            lastNode = node
+            
+            if (lastItem!.included) {
+                allNodes.append(lastNode!)
+                self.itemCountLabel.setTitle("" + String(allNodes.count), for: .normal)
+            }
+        }
     }
     
     @IBAction func saveItem(segue:UIStoryboardSegue) {
