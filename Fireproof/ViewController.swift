@@ -14,6 +14,7 @@ import Vision
 
 class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var tooltipLabel: UILabel!
+    @IBOutlet weak var itemCountLabel: UIButton!
     
     // SCENE
     @IBOutlet var sceneView: ARSCNView!
@@ -21,6 +22,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var latestPrediction : String = "…" // a variable containing the latest CoreML prediction
     var latestPotentialMatches: [VNClassificationObservation]?
     var ARSCNViewRenderer: SCNSceneRenderer?
+    var lastPosition: SCNVector3?
+    var lastNode: SCNNode?
+    var lastItem: Item?
+    
+    var allNodes: [SCNNode] = [SCNNode]()
     
     // COREML
     var visionRequests = [VNRequest]()
@@ -133,10 +139,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let worldCoord : SCNVector3 = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
             
             // Create 3D Text
-            let node : SCNNode = createNewBubbleParentNode(latestPrediction)
+            let node : SCNNode = createNewBubbleParentNode("[New Item]")
             
             sceneView.scene.rootNode.addChildNode(node)
             node.position = worldCoord
+            lastPosition = worldCoord
+            lastNode = node
+            
+            lastItem = Item(title: latestPrediction, img: nil, cost: 0.0, additionalDetails: nil, quantity: nil, referenceLink: nil, included: false)
             
 //            sceneView.session.pause()
             tooltipLabel.isHidden = true
@@ -275,6 +285,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBAction func unwindToVC(segue:UIStoryboardSegue) {
         resumeSceneView()
+        lastNode?.removeFromParentNode()
+        
+        // Create 3D Text
+        let node : SCNNode = createNewBubbleParentNode(lastItem?.title ?? "N/A")
+        
+        sceneView.scene.rootNode.addChildNode(node)
+        node.position = lastPosition!
+        lastNode = node
+        
+        allNodes.append(lastNode!)
+        self.itemCountLabel.setTitle("" + String(allNodes.count), for: .normal)
     }
     
     @IBAction func saveItem(segue:UIStoryboardSegue) {
@@ -286,6 +307,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let labelVC = segue.destination as! ItemTagViewController
             
             labelVC.potentialMatches = self.latestPotentialMatches
+            labelVC.currentNode = lastNode
+            labelVC.currentItem = lastItem
         }
     }
 }

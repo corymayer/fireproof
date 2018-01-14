@@ -78,6 +78,7 @@
                     </view>
                     <connections>
                         <outlet property="debugTextView" destination="hWs-m5-HIX" id="aW0-YQ-CNv"/>
+                        <outlet property="itemCountLabel" destination="cxx-un-pDB" id="unS-5e-qcv"/>
                         <outlet property="sceneView" destination="XMs-gA-sya" id="uz8-4k-aSX"/>
                         <outlet property="tooltipLabel" destination="gjd-wM-C8d" id="11X-u0-SLA"/>
                         <segue destination="zbi-gn-6iG" kind="presentation" identifier="nameItemSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="xha-jb-mXV"/>

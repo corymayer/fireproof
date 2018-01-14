@@ -15,7 +15,6 @@
 		AEEC856C1F18B8C600D43B9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEEC856A1F18B8C600D43B9B /* Main.storyboard */; };
 		AEEC856E1F18B8C600D43B9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEEC856D1F18B8C600D43B9B /* Assets.xcassets */; };
 		AEEC85711F18B8C600D43B9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEEC856F1F18B8C600D43B9B /* LaunchScreen.storyboard */; };
-		BA9AEC74200AE0B1001EED1E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9AEC73200AE0B1001EED1E /* TableViewController.swift */; };
 		BA9AEC77200AEEC0001EED1E /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9AEC76200AEEC0001EED1E /* Item.swift */; };
 		BA9AEC79200AEEC6001EED1E /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9AEC78200AEEC6001EED1E /* Room.swift */; };
 		BA9AEC7B200AEECB001EED1E /* House.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9AEC7A200AEECB001EED1E /* House.swift */; };
@@ -37,7 +36,6 @@
 		AEEC85701F18B8C600D43B9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AEEC85721F18B8C600D43B9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B592B6E8B3666ACAECADBFE8 /* Pods-Fireproof.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fireproof.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fireproof/Pods-Fireproof.debug.xcconfig"; sourceTree = "<group>"; };
-		BA9AEC73200AE0B1001EED1E /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		BA9AEC76200AEEC0001EED1E /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		BA9AEC78200AEEC6001EED1E /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		BA9AEC7A200AEECB001EED1E /* House.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = House.swift; sourceTree = "<group>"; };
@@ -105,7 +103,6 @@
 				AEEC85661F18B8C600D43B9B /* art.scnassets */,
 				AEEC85681F18B8C600D43B9B /* ViewController.swift */,
 				BAD28DE9200A73750014AEDB /* ItemTagViewController.swift */,
-				BA9AEC73200AE0B1001EED1E /* TableViewController.swift */,
 				AEEC856A1F18B8C600D43B9B /* Main.storyboard */,
 				AEEC856D1F18B8C600D43B9B /* Assets.xcassets */,
 				AEEC856F1F18B8C600D43B9B /* LaunchScreen.storyboard */,
@@ -256,7 +253,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAD28DEA200A73750014AEDB /* ItemTagViewController.swift in Sources */,
-				BA9AEC74200AE0B1001EED1E /* TableViewController.swift in Sources */,
 				BA9AEC79200AEEC6001EED1E /* Room.swift in Sources */,
 				BAD28DF7200A8ACD0014AEDB /* FloatLabelTextField.swift in Sources */,
 				BA9AEC7B200AEECB001EED1E /* House.swift in Sources */,

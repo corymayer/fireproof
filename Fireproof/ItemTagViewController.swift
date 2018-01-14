@@ -8,10 +8,13 @@
 
 import UIKit
 import Vision
+import SceneKit
 
 class ItemTagViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     var potentialMatches:[VNClassificationObservation]?
     var saveItem: Bool = false
+    var currentItem: Item?
+    var currentNode: SCNNode?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var itemNameField: UITextField!
@@ -20,14 +23,16 @@ class ItemTagViewController: UIViewController, UITextFieldDelegate, UITableViewD
         self.tableView.isHidden = true
     }
     @IBAction func ARButtonTap(_ sender: UIButton) {
-        if (saveItem) {
+        if (currentItem?.included ?? false) {
             sender.setImage(UIImage(named: "ARDotUnchecked"), for: .normal)
         }
         else {
             sender.setImage(UIImage(named: "ARDotChecked"), for: .normal)
         }
         
-        saveItem = !saveItem
+        if currentItem != nil {
+            currentItem!.included = !currentItem!.included
+        }
     }
     
     override func viewDidLoad() {
@@ -80,16 +85,17 @@ class ItemTagViewController: UIViewController, UITextFieldDelegate, UITableViewD
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(withIdentifier: "suggestionCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "suggestionCell", for: indexPath)
         
-         // Configure the cell...
+        // Configure the cell...
         cell.textLabel?.text = self.potentialMatches?[indexPath.row].identifier ?? ""
         
-         return cell
+        return cell
      }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         itemNameField.text = potentialMatches?[indexPath.row].identifier ?? ""
+        self.currentItem?.title = itemNameField.text
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -99,7 +105,20 @@ class ItemTagViewController: UIViewController, UITextFieldDelegate, UITableViewD
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.tableView.isHidden = true
+        self.currentItem?.title = textField.text
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.currentItem?.title = textField.text
+        textField.resignFirstResponder()
+        return true
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.destination is ViewController) {
+            let vc = segue.destination as! ViewController
+            
+            vc.lastItem = self.currentItem
+        }
+    }
 }
