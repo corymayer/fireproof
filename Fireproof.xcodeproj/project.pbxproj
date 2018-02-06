@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5C9DDEE42187F694C59B4396 /* Pods_Fireproof.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52637A3E758D54FD209467DA /* Pods_Fireproof.framework */; };
+		5F88C27E202A0F5D00B8BD4B /* Inceptionv3+Fritz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F88C27D202A0F5D00B8BD4B /* Inceptionv3+Fritz.swift */; };
 		AEC748F51F18C24700334D87 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = AEC748F41F18C24700334D87 /* Inceptionv3.mlmodel */; };
 		AEEC85651F18B8C600D43B9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEC85641F18B8C600D43B9B /* AppDelegate.swift */; };
 		AEEC85671F18B8C600D43B9B /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AEEC85661F18B8C600D43B9B /* art.scnassets */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		1E86DECE6B410292E1D98426 /* Pods-Fireproof.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fireproof.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fireproof/Pods-Fireproof.release.xcconfig"; sourceTree = "<group>"; };
 		52637A3E758D54FD209467DA /* Pods_Fireproof.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fireproof.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F88C27D202A0F5D00B8BD4B /* Inceptionv3+Fritz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Inceptionv3+Fritz.swift"; sourceTree = "<group>"; };
 		AEC748F41F18C24700334D87 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Inceptionv3.mlmodel; path = ../Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		AEEC85611F18B8C600D43B9B /* Fireproof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fireproof.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEEC85641F18B8C600D43B9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				AEEC856F1F18B8C600D43B9B /* LaunchScreen.storyboard */,
 				AEEC85721F18B8C600D43B9B /* Info.plist */,
 				AEC748F41F18C24700334D87 /* Inceptionv3.mlmodel */,
+				5F88C27D202A0F5D00B8BD4B /* Inceptionv3+Fritz.swift */,
 			);
 			path = Fireproof;
 			sourceTree = "<group>";
@@ -234,11 +237,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Fireproof/Pods-Fireproof-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
+				"${PODS_ROOT}/Fritz/Framework/Fritz.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fritz.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -258,6 +261,7 @@
 				BA9AEC7B200AEECB001EED1E /* House.swift in Sources */,
 				AEEC85691F18B8C600D43B9B /* ViewController.swift in Sources */,
 				BA9AEC77200AEEC0001EED1E /* Item.swift in Sources */,
+				5F88C27E202A0F5D00B8BD4B /* Inceptionv3+Fritz.swift in Sources */,
 				AEC748F51F18C24700334D87 /* Inceptionv3.mlmodel in Sources */,
 				AEEC85651F18B8C600D43B9B /* AppDelegate.swift in Sources */,
 			);

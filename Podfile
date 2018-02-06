@@ -6,4 +6,5 @@ target 'Fireproof' do
   use_frameworks!
 
   # Pods for Fireproof
+  pod 'Fritz', '~> 1.0.0-beta'
 end
